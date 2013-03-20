@@ -8,22 +8,27 @@ from time import sleep
 
 
 def main():
+	"""Takes local directory and cloud files container as arguments.
+	Uploads all files in the local directory to the container
+
+	"""
 	# Get domain and ip address from command line.
 	local_dir = ''
 	container = ''
 	try:
 	 	opts, args = getopt.getopt(sys.argv[1:],"hd:c:",["local_dir=","container="])
 	except getopt.GetoptError as err:
-	  	print 'Usage: challenge3.py -d <local_dir> -d <container>'
+	  	print 'Usage: challenge3.py -d <local_dir> -c <container>'
 	  	sys.exit(2)
 	if len(sys.argv) < 3:
-	  	print 'Usage: challenge3.py -d <local_dir> -d <container>'
+	  	print 'Usage: challenge3.py -d <local_dir> -c <container>'
+	  	sys.exit()
 	for opt, arg in opts:
 	  	if opt == '-h':
-			print 'Usage: challenge4.py -d <local_dir> -d <container>'
+			print 'Usage: challenge3.py -d <local_dir> -c <container>'
 			sys.exit()
 	  	elif opt == "":
-			print 'Usage: challenge4.py -d <local_dir> -d <container>'
+			print 'Usage: challenge3.py -d <local_dir> -c <container>'
 			sys.exit()
 	  	elif opt in ("-d", "--local_dir"):
 			local_dir = arg
@@ -32,7 +37,6 @@ def main():
 
 
 	# Path to credentials credentials credential file.
-	credendials = "~/.rackspace_cloud_credentials"
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	
 	print "Authenticating"
@@ -57,7 +61,7 @@ def main():
 	uploaded = 0
 	while uploaded < total_bytes:
 		uploaded = pyrax.cloudfiles.get_uploaded(upload_key)
-		sys.stdout.write("\r" + str(total_bytes) + " " + str(uploaded) + " Progress: %4.2f%%" % ((uploaded * 100.0) / total_bytes))
+		sys.stdout.write("\r" + " Progress: %4.2f%%" % ((uploaded * 100.0) / total_bytes))
 		sys.stdout.flush()
 		time.sleep(1)
 

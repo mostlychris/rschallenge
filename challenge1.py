@@ -6,7 +6,15 @@ from time import sleep
 import sys
 import datetime
 
+#Input a list of server names you want to create
+new_servers_list = ["web1", "web2", "web3"]
+
 def main():
+	"""Creates x number of 512M CentOS 6.3 cloud servers. The number and name of the 
+	servers is specified in the 'new_servers_list' list above.
+
+	"""
+
 	# Path to credentials credentials credential file.
 	credendials = "~/.rackspace_cloud_credentials"
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
@@ -21,9 +29,6 @@ def main():
 		sys.exit()
 	print "Authenticated Successfully as %s" % pyrax.identity.username
 	cs = pyrax.cloudservers
-	
-	#Input a list of server names you want to create
-	new_servers_list = ["web1", "web2", "web3"]
 	
 	#Use a CentOS 6.3 Image 
 	image = "c195ef3b-9195-4474-b6f7-16e5bd86acd0"

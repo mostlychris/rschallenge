@@ -3,10 +3,25 @@ import pyrax
 import pyrax.exceptions as e
 import time
 from time import sleep
+from time import gmtime, strftime
 import sys
 import datetime
 
+# Specify your values here
+server_to_clone = ""
+new_image_name = ""
+new_server_name = ""
+
 def main():
+	"""Makes an image of a cloud server and creates a new server
+	from that image.
+
+	"""
+
+	if server_to_clone == "" or new_image_name == "" or new_server_name == "":
+		print "ERROR: You have not set all server or image values.  Set these inside the script."
+		sys.exit()
+
 	# Path to credentials credentials credential file.
 	credendials = "~/.rackspace_cloud_credentials"
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
@@ -14,28 +29,22 @@ def main():
 	try:
 	    pyrax.set_credential_file(credential_file)
 	except e.AuthenticationFailed:
-	    print "Authentication Failed: The file does not contain valid credendials" % credenditials
+	    print "Authentication Failed: The file does not contain valid credendtials" % credenditials
 	    sys.exit()
 	except e.FileNotFound:
 		print "Authentication file %s not found" % credential_file
 		sys.exit()
 	print "Authenticated Successfully as %s" % pyrax.identity.username
 
-	#Set name of server to clone, name of new server and name of image
-	server_to_clone = "ns2"
-	new_image_name = "ns2testimg"
-	new_server_name = "ns2newserver"
-	
 	cs = pyrax.cloudservers
 	
-	#Get server object of server to be cloned """
-	#existing_server = [name for name in cs.servers.list()
-	#	if server_to_clone in name.name][0]
-	existing_server = cs.servers.find(name=server_to_clone)
-	
-	if existing_server == "":
-		print "no server object returned for", server_to_clone, ".  check your server to clone variable."
+	#Get server object of server to be cloned
+	try:
+		existing_server = cs.servers.find(name=server_to_clone)
+	except:
+		print "ERROR: Error getting server to be cloned %s. Check that correct server is specified." % server_to_clone 
 		sys.exit()
+
 	
 	#Create image of existing server
 	print "Getting", server_to_clone, "server ID"
@@ -50,15 +59,18 @@ def main():
 	        if flavor.ram == img.minRam][0]
 	
 	while img.status != 'ACTIVE':
-		sleep(10)
+		sleep(5)
 		img = cs.images.get(new_img_id)
+		now = strftime("%Y-%m-%d %H:%M:%S UTC", gmtime())
 		#Output image creation progress information
-		sys.stdout.write("\r" + "Image Status: " + img.status + ' ' + str(img.progress) + '%')
+		sys.stdout.write("\r" + "Image Status at " + str(now) + ": " + img.status + ' ' + str(img.progress) + '%')
 		sys.stdout.flush()
+	print
 	print
 	print "Image creation complete"
 	
 	#Create new server
+	print
 	print "Building Server", new_server_name
 	new_server = cs.servers.create(new_server_name, img, flavor.id)
 	created_server = {'ID' : new_server.id, 'status' : new_server.status, 'admin_pass' : new_server.adminPass}
@@ -70,9 +82,12 @@ def main():
 	while server.status != 'ACTIVE':
 		sleep(10)
 		server = cs.servers.get(new_server.id)
+		now = strftime("%Y-%m-%d %H:%M:%S UTC", gmtime())
 		#Output build progress information
-		sys.stdout.write("\r" + "Server Status: " + server.status + ' ' + str(server.progress) + '%')
+		sys.stdout.write("\r" + "Server Status at " + str(now) + ": " + server.status + ' ' + str(server.progress) + '%')
 		sys.stdout.flush()
+		if server.status == "ERROR" or server.status == "UNKNOWN":
+				print "Server build failed. Current status %s" % server.status
 	
 	#Now that the server is active, get the network information and print out the goods
 	network = server.networks
