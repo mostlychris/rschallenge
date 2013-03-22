@@ -23,13 +23,12 @@ def main():
 		sys.exit()
 
 	# Path to credentials credentials credential file.
-	credendials = "~/.rackspace_cloud_credentials"
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	print "Authenticating"
 	try:
 	    pyrax.set_credential_file(credential_file)
 	except e.AuthenticationFailed:
-	    print "Authentication Failed: The file does not contain valid credendtials" % credenditials
+	    print "Authentication Failed: The file does not contain valid credendtials"
 	    sys.exit()
 	except e.FileNotFound:
 		print "Authentication file %s not found" % credential_file
@@ -38,7 +37,7 @@ def main():
 
 	cs = pyrax.cloudservers
 	
-	#Get server object of server to be cloned
+	# Get server object of server to be cloned
 	try:
 		existing_server = cs.servers.find(name=server_to_clone)
 	except:
@@ -46,7 +45,7 @@ def main():
 		sys.exit()
 
 	
-	#Create image of existing server
+	# Create image of existing server
 	print "Getting", server_to_clone, "server ID"
 	server = cs.servers.get(existing_server.id)
 	
@@ -54,7 +53,7 @@ def main():
 	new_img_id = server.create_image(new_image_name)
 	img = cs.images.get(new_img_id)
 	
-	#Get min server size so we choose the correct flavor on new server creation
+	# Get min server size so we choose the correct flavor on new server creation
 	flavor = [flavor for flavor in cs.flavors.list()
 	        if flavor.ram == img.minRam][0]
 	
@@ -62,14 +61,14 @@ def main():
 		sleep(5)
 		img = cs.images.get(new_img_id)
 		now = strftime("%Y-%m-%d %H:%M:%S UTC", gmtime())
-		#Output image creation progress information
+		# Output image creation progress information
 		sys.stdout.write("\r" + "Image Status at " + str(now) + ": " + img.status + ' ' + str(img.progress) + '%')
 		sys.stdout.flush()
 	print
 	print
 	print "Image creation complete"
 	
-	#Create new server
+	# Create new server
 	print
 	print "Building Server", new_server_name
 	new_server = cs.servers.create(new_server_name, img, flavor.id)
@@ -77,19 +76,19 @@ def main():
 	server = cs.servers.get(new_server.id)
 	
 	 
-	### We can't get network information until the server is complete ###
-	### so we keep checking for Active status every 10 seconds ###
+	# We can't get network information until the server is complete 
+	# so we keep checking for Active status every 10 seconds 
 	while server.status != 'ACTIVE':
 		sleep(10)
 		server = cs.servers.get(new_server.id)
 		now = strftime("%Y-%m-%d %H:%M:%S UTC", gmtime())
-		#Output build progress information
+		# Output build progress information
 		sys.stdout.write("\r" + "Server Status at " + str(now) + ": " + server.status + ' ' + str(server.progress) + '%')
 		sys.stdout.flush()
 		if server.status == "ERROR" or server.status == "UNKNOWN":
 				print "Server build failed. Current status %s" % server.status
 	
-	#Now that the server is active, get the network information and print out the goods
+	# Now that the server is active, get the network information and print out the goods
 	network = server.networks
 	print
 	print "Server", new_server_name, "build complete"

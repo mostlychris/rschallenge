@@ -34,14 +34,13 @@ def main():
 			ip_address = arg
 
 	# Path to credentials credentials credential file.
-	credendials = "~/.rackspace_cloud_credentials"
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	
 	print "Authenticating"
 	try:
 	    pyrax.set_credential_file(credential_file)
 	except e.AuthenticationFailed:
-	    print "Authentication Failed: The file does not contain valid credendials" % credenditials
+	    print "Authentication Failed: The file does not contain valid credendials"
 	    sys.exit()
 	except e.FileNotFound:
 		print "Authentication file %s not found" % credential_file

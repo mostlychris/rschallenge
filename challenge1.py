@@ -7,7 +7,7 @@ import sys
 import datetime
 
 #Input a list of server names you want to create
-new_servers_list = ["web1", "web2", "web3"]
+new_servers_list = ["chefplaygound"]
 
 def main():
 	"""Creates x number of 512M CentOS 6.3 cloud servers. The number and name of the 
@@ -16,13 +16,12 @@ def main():
 	"""
 
 	# Path to credentials credentials credential file.
-	credendials = "~/.rackspace_cloud_credentials"
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	print "Authenticating"
 	try:
 	    pyrax.set_credential_file(credential_file)
 	except e.AuthenticationFailed:
-	    print "Authentication Failed: The file does not contain valid credendials" % credenditials
+	    print "Authentication Failed: The file does not contain valid credendials"
 	    sys.exit()
 	except e.FileNotFound:
 		print "Authentication file %s not found" % credential_file
@@ -30,10 +29,10 @@ def main():
 	print "Authenticated Successfully as %s" % pyrax.identity.username
 	cs = pyrax.cloudservers
 	
-	#Use a CentOS 6.3 Image 
+	# Use a CentOS 6.3 Image 
 	image = "c195ef3b-9195-4474-b6f7-16e5bd86acd0"
 	
-	#Use a 512M Standard Flavor
+	# Use a 512M Standard Flavor
 	flavor = "2" 
 	
 	for server_name in new_servers_list:
@@ -43,8 +42,8 @@ def main():
 		print
 		print "Building Server", server_name
 		server = cs.servers.get(new_server.id)
-		#We can't get network information until the server is complete 
-		#so we keep checking for Active status every 10 seconds
+		# We can't get network information until the server is complete 
+		# so we keep checking for Active status every 10 seconds
 		while server.status != 'ACTIVE':
 			sleep(10)
 			server = cs.servers.get(new_server.id)
@@ -53,7 +52,7 @@ def main():
 			sys.stdout.flush()
 			if server.status == "ERROR" or server.status == "UNKNOWN":
 				print "Server build failed. Current status %s" % server.status
-		#Now that the server is active, get the network information and print out the goods
+		# Now that the server is active, get the network information and print out the goods
 		network = server.networks
 		print
 		print "Server", server_name, "build complete"
