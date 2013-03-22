@@ -34,7 +34,7 @@ Creates an 'A' record in cloud DNS for a domain.
   
 #### Challenge 5
 ---
-Creates a clound database (instance), database in that instance and a cloud database user.  Arguments are specified in the script.    
+Creates a cloud database (instance), database in that instance and a cloud database user.  Arguments are specified in the script.    
 
 
   
