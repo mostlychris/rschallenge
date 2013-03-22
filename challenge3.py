@@ -12,7 +12,7 @@ def main():
 	Uploads all files in the local directory to the container
 
 	"""
-	# Get domain and ip address from command line.
+	# Get local upload dir and remote container from command line.
 	local_dir = ''
 	container = ''
 	try:
@@ -36,7 +36,7 @@ def main():
 			container = arg
 
 
-	# Path to credentials credentials credential file.
+	# Path to credential file.
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	
 	print "Authenticating"

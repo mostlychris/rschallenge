@@ -15,7 +15,7 @@ def main():
 
 	"""
 
-	# Path to credentials credentials credential file.
+	# Path to credential file.
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	print "Authenticating"
 	try:

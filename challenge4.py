@@ -33,7 +33,7 @@ def main():
 	  	elif opt in ("-i", "--ip_address"):
 			ip_address = arg
 
-	# Path to credentials credentials credential file.
+	# Path to credential file.
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	
 	print "Authenticating"

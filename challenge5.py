@@ -15,9 +15,9 @@ def main():
 
 	"""
 	# Specify new instance name, new database name, password and new user 
-	instance_name = "c5testinst3"
-	database_name = "c5testdb3"
-	user_val = "joe_user2"
+	instance_name = ""
+	database_name = ""
+	user_val = ""
 	password_val = ""  # Leave blank for random password generation
 
 	if instance_name == "" or database_name == "" or user_val == "":
@@ -25,7 +25,7 @@ def main():
 		print "Add these at the top of this script.\n"
 		sys.exit()
 	
-	# Path to credentials credentials credential file.
+	# Path to credential file.
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
 	
 	print "Authenticating"
