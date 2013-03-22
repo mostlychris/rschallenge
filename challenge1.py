@@ -7,7 +7,7 @@ import sys
 import datetime
 
 #Input a list of server names you want to create
-new_servers_list = ["chefplaygound"]
+new_servers_list = ["web1","web2","web3"]
 
 
 def main():
