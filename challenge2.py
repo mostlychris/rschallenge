@@ -12,6 +12,7 @@ server_to_clone = ""
 new_image_name = ""
 new_server_name = ""
 
+
 def main():
 	"""Makes an image of a cloud server and creates a new server
 	from that image.

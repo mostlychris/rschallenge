@@ -9,6 +9,7 @@ import datetime
 #Input a list of server names you want to create
 new_servers_list = ["chefplaygound"]
 
+
 def main():
 	"""Creates x number of 512M CentOS 6.3 cloud servers. The number and name of the 
 	servers is specified in the 'new_servers_list' list above.

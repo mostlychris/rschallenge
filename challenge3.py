@@ -6,7 +6,6 @@ import time
 from time import sleep
 
 
-
 def main():
 	"""Takes local directory and cloud files container as arguments.
 	Uploads all files in the local directory to the container

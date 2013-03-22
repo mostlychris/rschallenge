@@ -5,8 +5,6 @@ import sys, getopt
 import time
 from time import sleep
 
-
-
 def main():
 	"""Takes cloud files container as argument and creates
 	a CDN enabled container

@@ -8,7 +8,6 @@ from time import gmtime, strftime
 import string
 import random
 
-
 def main():
 	"""Creates a clound database (instance), database in that instance
 	and a cloud database user.

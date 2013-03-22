@@ -3,8 +3,6 @@ import pyrax
 import pyrax.exceptions as e
 import sys, getopt
 
-
-
 def main():
 	"""Creates an 'A' record in cloud DNS for a domain.  Arguments
 	are provided on the command line.
