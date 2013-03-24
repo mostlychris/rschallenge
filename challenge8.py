@@ -6,10 +6,10 @@ import time
 from time import sleep
 
 def main():
-	"""Creates a static webpage out of cloud files. Creates a new container,
-		CDN enables it, enables it to serve and index file, creates an index
-		file object and creates a CNAME record pointing to the CDN URL of the
-		container.
+	"""Creates a static webpage for cloud files. 
+
+		Creates a new container, CDN enables it, creates an index file object 
+		and creates a CNAME record pointing to the CDN URL of the container.
 
 	"""
 	# Set container, file object, object content and domain to create CNAME record on.
@@ -17,10 +17,9 @@ def main():
 	object_name = "index.html"
 	content = "<!DOCTYPE html><head><title>Challenge8</title></head><body background='#000'>\
 		<img src='http://www.rackspace.com/images/header/logo-rackspace.png'\
-		<br><br>This is the content of the challenge 8 index file.\
+		<br><br><br>This is the content of the challenge 8 index file.\
 		</body></html>"
 	domain_name = "checkpointrms.com"
-
 
 	# Path to credential file.
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
