@@ -45,13 +45,22 @@ Takes cloud files container as argument and creates
 a CDN enabled container.
 
 	Usage: challenge3.py -c <container>  
-
-
-	  
 	
+
+
+
 #### Challenge 7
 ---
-Creates two servers and adds them to a load balancer.  No arguments required.
+Creates two servers and adds them to a load balancer.  No arguments required.  
+  
+  
+
+#### Challenge 8
+---
+Creates a new container, CDN enables it, creates an index file object and creates a CNAME record pointing to the CDN URL of the container. 
+  
+   
+The URL of the CDN container will be 'challenge8.<domain_name>.  Specify all arguments in the script.
 
   
   
