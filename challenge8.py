@@ -13,13 +13,18 @@ def main():
 
 	"""
 	# Set container, file object, object content and domain to create CNAME record on.
-	container = "challenge8container"
-	object_name = "index.html"
+	container = "chal8cont2"
+	object_name = "index2.html"
 	content = "<!DOCTYPE html><head><title>Challenge8</title></head><body background='#000'>\
 		<img src='http://www.rackspace.com/images/header/logo-rackspace.png'\
 		<br><br><br>This is the content of the challenge 8 index file.\
 		</body></html>"
 	domain_name = "checkpointrms.com"
+
+	# Check to make sure we have all the arguments we need to continue.
+	if container == "" or object_name == "" or content == "" or domain_name == "":
+		print "ERROR: Missing arguments.  You must supply all arguments in the script."
+		sys.exit()
 
 	# Path to credential file.
 	credential_file = os.path.expanduser("~/.rackspace_cloud_credentials")
