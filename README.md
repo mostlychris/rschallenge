@@ -60,7 +60,7 @@ Creates two servers and adds them to a load balancer.  No arguments required.
 Creates a new container, CDN enables it, creates an index file object and creates a CNAME record pointing to the CDN URL of the container. 
   
    
-The URL of the CDN container will be 'challenge8.<domain_name>.  Specify all arguments in the script.
+The URL of the CDN container will be 'challenge8.<domain_name>'.  Specify all arguments in the script.
 
   
   
