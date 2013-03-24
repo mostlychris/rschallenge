@@ -1,9 +1,7 @@
 import os
 import pyrax
 import pyrax.exceptions as e
-import sys, getopt
-import time
-from time import sleep
+import sys
 
 def main():
 	"""Creates a static webpage for cloud files. 
