@@ -62,5 +62,7 @@ Creates a new container, CDN enables it, creates an index file object and create
    
 The URL of the CDN container will be "challenge8.\<domain_name\>".  Specify all arguments in the script.
 
-  
-  
+
+#### Challenge 9
+***
+Creates a new server based on the input of a FQDN, image name and RAM size (flavor).  The server is named the same as the FQDN.  A new domain is created in DNS that corresponds to the provided FQDN and an A record of the server's public IP is added to that domain. 
