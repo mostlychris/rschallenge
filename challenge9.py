@@ -4,7 +4,6 @@ import pyrax.exceptions as e
 import time
 from time import sleep
 import sys
-import getopt
 import datetime
 import socket
 
@@ -40,6 +39,8 @@ def main():
 	print "Authenticated Successfully as %s" % pyrax.identity.username
 	cs = pyrax.cloudservers
 
+	# Getting image ID for image specified.  If we don't recognize the image name
+	# we print out a listing of valid images.
 	print "Getting image ID"
 	try: 
 		image_to_create = [img for img in cs.images.list() if img_name in img.name][0]
@@ -53,6 +54,8 @@ def main():
 			print img.name
 		sys.exit()
 
+	# Getting flavor ID for flavor specified.  If we con't recognize the flavor
+	# we print out a listing of valid flavors.
 	print "Getting flavor ID"
 	try:
 		flavor_to_create = [flavor for flavor in cs.flavors.list() if flavor.ram == int(flavor_ram)][0]
@@ -94,7 +97,7 @@ def main():
 	except:
 		ip = socket.inet_pton(socket.AF_INET, network['public'][0])
 		ipv4_address = network['public'][0]
-
+		
 	print
 	print "Server build complete"
 	print "Admin Password: ", created_server['admin_pass']
@@ -105,7 +108,7 @@ def main():
 	try:
 		dom = dns.find(name=domain)
 	except e.NotFound as err:
-		print "Domain not found. %s.  Creating domain." % domain 
+		print "Domain %s not found.  Creating domain." % domain 
 		dom = dns.create(name=domain, emailAddress="hostmaster@" + domain)
 			
 	print "Adding DNS record."
