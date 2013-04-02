@@ -12,12 +12,12 @@ def main():
 	"""
 	# Set container, file object, object content and domain to create CNAME record on.
 	container = "chal8cont2"
-	object_name = "index2.html"
+	object_name = "index.html"
 	content = "<!DOCTYPE html><head><title>Challenge8</title></head><body background='#000'>\
 		<img src='http://www.rackspace.com/images/header/logo-rackspace.png'\
 		<br><br><br>This is the content of the challenge 8 index file.\
 		</body></html>"
-	domain_name = "checkpointrms.com"
+	domain_name = ""
 
 	# Check to make sure we have all the arguments we need to continue.
 	if container == "" or object_name == "" or content == "" or domain_name == "":
