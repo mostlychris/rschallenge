@@ -66,3 +66,18 @@ The URL of the CDN container will be "challenge8.\<domain_name\>".  Specify all 
 #### Challenge 9
 ***
 Creates a new server based on the input of a FQDN, image name and RAM size (flavor).  The server is named the same as the FQDN.  A new domain is created in DNS that corresponds to the provided FQDN and an A record of the server's public IP is added to that domain. 
+
+
+
+#### Challenge 10
+***
+
+Creates a cloud configuration with Rackspace Cloud products.
+
+1.  Creates two 512M Ubuntu servers and adds an ssh key to both.
+2.  Creates a load balancer and adds server to the LB.
+3.  Sets up monitoring on the LB with a custom error page.
+4.  Creates a DNS entry based on the FQDN of the LB VIP.
+5.  Creates the error page in cloud files for backup.
+
+All configuration options are inside script.
