@@ -20,10 +20,10 @@ def main():
 
 	# Set key file source, destination, content for load balancer
 	# custom error page and domain name to set the LB VIP
-	key_file = "/Users/chris.west/.public_key_file" 
+	key_file = "/path/to/.public_key_file" 
 	destination_path = "/root/.ssh/authorized_keys"	
 	lb_custom_error = "<html><body>One or more of your nodes is offline</body></html>"
-	domain_name = "checkpointrms.com"
+	domain_name = "my.domain.com"
 	server1_name = "challenge10server1"
 	server2_name = "challenge10server2"
 	lb_name = "challenge10lb1"
