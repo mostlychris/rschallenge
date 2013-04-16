@@ -81,3 +81,23 @@ Creates a cloud configuration with Rackspace Cloud products.
 5.  Creates the error page in cloud files for backup.
 
 All configuration options are inside script.
+
+
+#### Challenge 11
+***
+
+Not Done Yet.
+
+
+#### Challenge 12
+***
+
+Creates or lists mailgun routes.
+
+Supply the match_recipient when calling function 'create_route'.
+The create_route function sets the action as a forward to 
+'http//cldsrvr.com/challenge1'
+
+The function 'get_routes' takes no arguments.
+
+REQUIRES requests, werkzeug and the werkzeug.MultiDict
